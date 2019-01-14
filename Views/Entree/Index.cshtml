@@ -1,0 +1,39 @@
+﻿@model List<DinnerApp.Models.Entree>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>All Entrees</h2>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <span>@TempData["ErrorMessage"]</span>
+}
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Ingredients
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var entree in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(entree.Name, "Details", new { id = entree.ID })
+                </td>
+                <td>
+                    @*Render using Partial()*@
+                    @Html.Partial("_Ingredients", entree.Ingredients)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

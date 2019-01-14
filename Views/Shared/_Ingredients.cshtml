@@ -1,0 +1,13 @@
+﻿
+@model List<DinnerApp.Models.Ingredient>
+
+@{
+    string display = "";
+    foreach (var ingredient in Model)
+    {
+        display += ingredient.Name + " (" + ingredient.Amount.ToString() + " " + ingredient.Unit + "), ";
+    }
+    display = display.Remove(display.LastIndexOf(","));
+}
+
+<span>@display</span>
